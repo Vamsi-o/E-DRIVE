@@ -32,7 +32,7 @@ export default function ConfiguratorPreview() {
       className="relative min-h-screen overflow-hidden bg-[#050505]"
     >
       {/* Two-column layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen pt-[var(--header-height)]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         {/* Left — Image with parallax */}
         <motion.div
           className="relative h-[60vh] lg:h-auto overflow-hidden"
@@ -56,7 +56,7 @@ export default function ConfiguratorPreview() {
 
         {/* Right — Content */}
         <motion.div
-          className="flex flex-col justify-center px-[clamp(32px,6vw,100px)] py-20 lg:py-0"
+          className="flex flex-col justify-center px-[clamp(40px,7vw,120px)] py-24 lg:py-0"
           style={{ y: textY, opacity: textOpacity }}
         >
           <motion.p
@@ -91,7 +91,7 @@ export default function ConfiguratorPreview() {
           </motion.p>
 
           {/* Spec grid */}
-          <div className="grid grid-cols-2 gap-x-12 gap-y-8 mb-14">
+          <div className="grid grid-cols-2 gap-x-16 gap-y-10 mb-16">
             {specs.map((spec, i) => (
               <motion.div
                 key={spec.label}
