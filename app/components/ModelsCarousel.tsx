@@ -60,7 +60,7 @@ const AUTOPLAY_MS = 6000;
 export default function ModelsCarousel() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const navigate = useCallback((newDir: number) => {
     setDirection(newDir);
