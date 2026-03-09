@@ -37,7 +37,12 @@ yarn-error.log*
 .vercel
 
 # large video files
+public/v1.mp4
+public/v1.MP4
+public/v2.mp4
 public/v2.MP4
+public/downgrade0000-0513.mp4
+public/downgrade0000-0513 (1).mp4
 
 # typescript
 *.tsbuildinfo
