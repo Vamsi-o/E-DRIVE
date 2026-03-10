@@ -243,9 +243,9 @@ export default function ModelRPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-3xl font-black uppercase tracking-[-0.02em] mb-6">
+              {/* <h3 className="text-3xl font-black uppercase tracking-[-0.02em] mb-6">
                 CE Certified
-              </h3>
+              </h3> */}
               <p className="text-white/50 leading-relaxed">
                 CE certified, compliant with European safety, construction, and
                 environmental standards.

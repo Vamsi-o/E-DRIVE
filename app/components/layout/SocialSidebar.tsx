@@ -65,15 +65,13 @@ export default function SocialSidebar() {
   return (
     <aside
       id="social-sidebar"
+      className="hidden lg:flex flex-col gap-[18px]"
       style={{
         position: 'fixed',
         right: '24px',
         top: '50%',
         transform: 'translateY(-50%)',
         zIndex: 50,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '18px',
       }}
     >
       {socials.map((s) => (

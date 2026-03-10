@@ -233,7 +233,7 @@ export default function ModelsCarousel() {
       <div className="absolute inset-y-0 left-0 right-0 z-30 flex items-center justify-between px-4 pointer-events-none lg:hidden">
         <button
           onClick={() => navigate(-1)}
-          className="pointer-events-auto w-12 h-12 flex items-center justify-center bg-black/40 backdrop-blur-sm text-white/70"
+          className="pointer-events-auto w-12 h-12 flex items-center justify-center rounded-md bg-black/40 backdrop-blur-sm text-white/70"
           aria-label="Previous"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -242,7 +242,7 @@ export default function ModelsCarousel() {
         </button>
         <button
           onClick={() => navigate(1)}
-          className="pointer-events-auto w-12 h-12 flex items-center justify-center bg-black/40 backdrop-blur-sm text-white/70"
+          className="pointer-events-auto w-12 h-12 flex items-center justify-center rounded-md bg-black/40 backdrop-blur-sm text-white/70"
           aria-label="Next"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">

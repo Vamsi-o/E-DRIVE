@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 h-[60px] md:h-[68px] lg:h-[76px] z-[100] flex items-center justify-between page-pad transition-all duration-700 ${
+        className={`fixed top-0 left-0 right-0 h-[60px] md:h-[68px] lg:h-[76px] z-[40] flex items-center justify-between page-pad transition-all duration-700 ${
           scrolled || menuOpen
             ? 'bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5'
             : 'bg-transparent'

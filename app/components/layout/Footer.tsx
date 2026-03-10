@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 const navLinks = [
   { label: 'Company', href: '/company' },
@@ -79,35 +80,47 @@ export default function Footer() {
   return (
     <footer ref={footerRef} id="footer" className="relative bg-black overflow-hidden">
       {/* Main content */}
-      <div className="page-pad pt-20 pb-14">
+      {/* Main content */}
+      <div className="page-pad pt-20 pb-16">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-10 md:gap-20 items-start">
-            {/* Brand */}
-            <div>
-              <h2 className="text-white text-2xl font-black tracking-[0.15em] uppercase mb-2">
-                <span className="text-tiffany">e</span>Drive
-              </h2>
-              <p className="text-footer-text text-xs tracking-[0.2em] uppercase mb-6">
-                Next-Generation JetCar Manufacturing
-              </p>
+          <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-8">
+            {/* Left Nav Grid Area */}
+            <div className="w-full lg:w-3/4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4">
+                {/* 
+                  Since our navLinks array is small (5 items), let's render them in a clean grid.
+                  In a real scenario, this would match exactly the column structure of the reference.
+                */}
+                <div className="flex flex-col gap-6">
+                  {navLinks.slice(0, 2).map((link) => (
+                    <a key={link.label} href={link.href} className="text-white text-[0.75rem] font-bold tracking-widest uppercase hover:text-white/70 transition-colors">
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-6">
+                  {navLinks.slice(2, 4).map((link) => (
+                    <a key={link.label} href={link.href} className="text-white text-[0.75rem] font-bold tracking-widest uppercase hover:text-white/70 transition-colors">
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-6">
+                  {navLinks.slice(4, 5).map((link) => (
+                    <a key={link.label} href={link.href} className="text-white text-[0.75rem] font-bold tracking-widest uppercase hover:text-white/70 transition-colors">
+                      {link.label}
+                    </a>
+                  ))}
+                  <button className="text-left text-white text-[0.75rem] font-bold tracking-widest uppercase hover:text-white/70 transition-colors">
+                    Cookie Settings
+                  </button>
+                </div>
+              </div>
             </div>
-
-            {/* Navigation */}
-            <nav className="flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-footer-text text-sm font-medium hover:text-white transition-colors duration-300"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            {/* Social + Copyright */}
-            <div className="flex flex-col items-start md:items-end gap-5">
-              <div className="flex gap-3">
+            {/* Right Social Area */}
+            <div className="w-full lg:w-1/4 flex flex-col items-start lg:items-end gap-6 mt-8 lg:mt-0">
+              <p className="text-white text-[0.85rem] tracking-wide mb-2">Follow us on:</p>
+              <div className="flex flex-wrap lg:justify-end gap-6">
                 {socialLinks.map((s) => (
                   <a
                     key={s.label}
@@ -115,9 +128,11 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-white/35 hover:text-tiffany hover:border-tiffany/30 transition-all duration-300"
+                    className="text-white hover:text-white/60 transition-colors"
                   >
-                    {s.icon}
+                    <div className="w-5 h-5 [&>svg]:w-full [&>svg]:h-full">
+                      {s.icon}
+                    </div>
                   </a>
                 ))}
               </div>
@@ -125,45 +140,46 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Divider */}
+<br />
+      {/* Primary Divider */}
       <div className="page-pad">
-        <div className="max-w-[1400px] mx-auto h-px bg-white/[0.06]" />
+        <div className="max-w-[1400px] mx-auto h-[1px] bg-[#333333]" />
       </div>
-
+      <br />
       {/* Legal Notices */}
-      <div className="page-pad py-10">
-        <div className="max-w-[1400px] mx-auto space-y-6">
-          <p className="text-white/20 text-[0.7rem] leading-relaxed max-w-4xl">
-            The specifications, features, and visuals displayed on this website may vary
+      <div className="page-pad py-12">
+        <div className="max-w-[1400px] mx-auto flex flex-col gap-6">
+          <p className="text-white/80 text-[0.7rem] md:text-[0.8rem] leading-[1.8] font-light">
+            * The specifications, features, and visuals displayed on this website may vary
             depending on market availability and configuration. Product availability,
             specifications, and compliance may differ based on regional regulations. If you
             believe information is incorrectly displayed for your location, please contact
             an authorized E-Drive representative.
           </p>
-          <p className="text-white/20 text-[0.7rem] leading-relaxed max-w-4xl">
+          <p className="text-white/80 text-[0.7rem] md:text-[0.8rem] leading-[1.8] font-light mt-4">
             E-Drive is not a publicly traded company and does not offer shares or equity
             through this website. E-Drive may present individual investment and partnership
             opportunities exclusively on a contractual basis and through authorized company
-            representatives. Any third-party claims regarding the sale of shares, equity
-            participation, or investment products on behalf of E-Drive without official
-            written confirmation from the company are unauthorized.
+            representatives.
           </p>
         </div>
       </div>
-
+                <br />
+      {/* Secondary Divider */}
+      <div className="page-pad">
+        <div className="max-w-[1400px] mx-auto h-[1px] bg-[#333333]" />
+      </div>
+      <br />
       {/* Bottom bar */}
       <div className="page-pad">
-        <div className="max-w-[1400px] mx-auto h-px bg-white/[0.06]" />
-      </div>
-      <div className="page-pad py-6">
-        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/15 text-[0.65rem] tracking-[0.05em]">
-            &copy; 2026 E-Drive JetCar Manufacturing L.L.C. All rights reserved.
+        <div className="max-w-[1400px] mx-auto py-10 flex flex-col gap-8">
+          <p className="text-white text-[0.8rem] font-light tracking-wide">
+            This site is protected by reCAPTCHA and the Privacy Policy and Terms of Service apply.
           </p>
-          <button className="text-white/30 text-[0.65rem] underline hover:text-white/60 transition-colors">
-            Cookie Settings
-          </button>
+          <p className="text-white text-[0.8rem] font-light tracking-wide leading-relaxed">
+            Copyright &copy; {new Date().getFullYear()} E-Drive JetCar Manufacturing L.L.C. a company with sole shareholder subject to the management and coordination of E-Drive Group.<br />
+            All rights reserved. VAT no. AE 1234567890123
+          </p>
         </div>
       </div>
 

@@ -50,7 +50,7 @@ export default function AboutSection() {
       className="relative bg-[#060606] overflow-hidden"
     >
       {/* ── Spacious top statement ── */}
-      <div className="px-[var(--page-padding)] pt-40 lg:pt-52 pb-24 lg:pb-32">
+      <div className="px-[var(--page-padding)] pt-40 lg:pt-52 pb-24 lg:pb-32 relative">
         <div className="max-w-[1400px] mx-auto">
           {/* Ghost text watermark */}
           <div className="absolute left-0 right-0 top-28 lg:top-36 flex justify-center pointer-events-none select-none overflow-hidden">

@@ -44,7 +44,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
       className="fixed inset-0 z-[90] bg-[#0A0A0A] overflow-y-auto flex flex-col"
     >
       {/* Main content — vertically centered, with proper page padding */}
-      <div className="flex-1 flex flex-col page-pad justify-center pt-[122px] pb-8">
+      <div className="flex-1 flex flex-col page-pad justify-center pt-[122px] pb-8 gap-12">
 
         {/* Top Grid Links — 3 columns matching Figma */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-14 w-full max-w-[1400px] mx-auto mt-auto">
@@ -66,10 +66,8 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
             </motion.div>
           ))}
         </div>
-          <br />
         {/* Tiffany Separator Line */}
         {/* <motion.div variants={itemVariants} className="w-full max-w-[1400px] mx-auto h-[2px] bg-tiffany mt-16 mb-16" /> */}
-          <br />
         {/* Bottom Grid Links */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-14 w-full max-w-[1400px] mx-auto">
           {bottomLinks.map((link) => (
@@ -89,7 +87,6 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
             </motion.div>
           ))}
         </div>
-          <br /> <br />
         {/* Footer Area — Languages + Text Size */}
         <motion.div variants={itemVariants} className="mt-auto pt-20 pb-4 flex flex-wrap items-center justify-between gap-8 max-w-[1400px] mx-auto w-full">
           <div className="flex items-center flex-wrap gap-8 lg:gap-12">
@@ -103,7 +100,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
               {mainLangs.map((lang, idx) => (
                 <button
                   key={lang}
-                  className={`px-5 py-2 text-sm font-medium transition-colors ${
+                  className={`px-5 py-2 text-sm font-medium rounded-sm transition-colors ${
                     idx === 0 ? 'bg-tiffany text-black' : 'text-white/60 hover:text-white hover:bg-white/5'
                   }`}
                 >

@@ -20,54 +20,92 @@ export default function HeroSection() {
       id="hero"
       className="relative w-full h-screen min-h-[700px] bg-black"
     >
-      {/* Background Image with parallax zoom */}
+      {/* Background Video with parallax zoom */}
       <motion.div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.img
-          src="/hero section/0b577594-f9ca-4d62-a007-00599336147a.JPG"
-          alt="eDrive Jetty"
-          className="w-full h-full object-cover"
+        <motion.video
+          src="/hero-bg.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-80"
           style={{ scale: videoScale }}
         />
       </motion.div>
 
-      {/* Left-side blur overlay */}
-      <div className="absolute left-[-70px] top-0 w-[500px] h-full z-[5] bg-[rgba(16,16,16,0.48)] blur-[160px] pointer-events-none" />
+      {/* Left-side blur overlay for text readability */}
+      <div className="absolute left-0 top-0 w-3/4 md:w-1/2 h-full z-[5] bg-gradient-to-r from-black/80 to-transparent pointer-events-none" />
 
       {/* Animated overlay */}
       <motion.div
-        className="absolute inset-0 z-10 bg-black/10"
+        className="absolute inset-0 z-10 bg-black/20"
         style={{ opacity: overlayOpacity }}
       />
 
       {/* Bottom vignette — strong fade to black for seamless transition */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
 
-      {/* Hero Content */}
-      <div className="relative z-20 h-full flex flex-col justify-end page-pad pb-36 md:pb-44">
-        <div className="max-w-[1400px]">
+      {/* Hero Content - Centered vertically, left aligned */}
+      <div className="relative z-20 h-full flex flex-col justify-center page-pad pt-20">
+        <div className="max-w-[1400px] mx-auto w-full">
+          {/* Kicker */}
           <motion.p
-            className="text-white/80 text-xs md:text-sm tracking-[0.2em] uppercase mb-6"
+            className="text-white/90 text-sm md:text-base tracking-[0.1em] md:tracking-[0.2em] font-bold uppercase mb-6"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="font-bold">NEXT-GENERATION</span>
-            <span className="font-light"> JETCAR MANUFACTURING — UAE</span>
+            NEXT-GENERATION JETCAR MANUFACTURING — UAE
           </motion.p>
 
-          <div className="overflow-hidden mb-10">
+          {/* Main Headline - Stacked Left */}
+          <div className="overflow-visible mb-12">
             <motion.h1
-              className="text-white text-5xl md:text-7xl lg:text-[80px] tracking-tight leading-[1.05]"
-              initial={{ y: '110%' }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="text-white text-[3rem] leading-[1] md:text-6xl lg:text-[85px] xl:text-[100px] lg:leading-[0.95] flex flex-col"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.12, delayChildren: 0.4 },
+                },
+              }}
+              initial="hidden"
+              animate="visible"
             >
-              <span className="font-extrabold block">Create. Drive.</span>
-              <span className="font-extralight block">Dominate the water.</span>
+              {[
+                "CREATE.",
+                "DRIVE.",
+                "DOMINATE",
+                "THE WATER."
+              ].map((line, lineIndex) => (
+                <span key={lineIndex} className="font-title font-black uppercase tracking-tighter block" style={{ whiteSpace: 'nowrap' }}>
+                  {line.split(' ').map((word, wordIndex) => (
+                    <motion.span
+                      key={wordIndex}
+                      className="inline-block mr-[2%]"
+                      variants={{
+                        hidden: { opacity: 0, y: 50, rotateX: -40 },
+                        visible: { opacity: 1, y: 0, rotateX: 0 },
+                      }}
+                      transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                      style={{
+                        background: 'linear-gradient(to right, #ffffff, #e0e0e0, #f8f8f8)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        transformOrigin: 'bottom',
+                        filter: 'drop-shadow(0 0 30px rgba(255,255,255,0.25))',
+                      }}
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </span>
+              ))}
             </motion.h1>
           </div>
 
-          {/* CTA */}
+          {/* Solid CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,11 +113,10 @@ export default function HeroSection() {
           >
             <a
               href="/models"
-              className="group inline-flex items-center gap-3 text-white/70 text-sm tracking-[0.15em] uppercase font-light hover:text-white transition-colors duration-500"
+              className="group inline-flex items-center justify-center gap-6 bg-tiffany text-black px-12 py-6 text-base md:text-lg lg:text-xl tracking-[0.2em] font-black uppercase transition-all duration-300 hover:bg-white"
             >
-              <span className="w-12 h-[1px] bg-tiffany/60 group-hover:w-16 transition-all duration-500" />
               DISCOVER MORE
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:translate-x-1 transition-transform duration-300">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-3 transition-transform duration-300">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>

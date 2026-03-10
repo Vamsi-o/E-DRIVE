@@ -131,17 +131,18 @@ export default function ModelsShowcase() {
 
         {/* Car Image with Navigation */}
         <div className="relative flex items-center justify-center mb-10">
-          <button
-            onClick={goPrev}
-            className="absolute left-3 md:left-8 lg:left-16 z-20 w-11 h-11 md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border border-black/15 text-black/30 hover:border-black/40 hover:text-black/60 transition-all duration-300 bg-white/60 backdrop-blur-sm"
-            aria-label="Previous model"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+          <div className="relative w-full max-w-[1000px] mx-auto px-14 md:px-20">
+            {/* Prev button */}
+            <button
+              onClick={goPrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border border-black/15 text-black/30 hover:border-black/40 hover:text-black/60 transition-all duration-300 bg-white/60 backdrop-blur-sm"
+              aria-label="Previous model"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-          <div className="w-full max-w-[1000px] px-16 md:px-24 mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id}
@@ -163,17 +164,18 @@ export default function ModelsShowcase() {
                 )}
               </motion.div>
             </AnimatePresence>
-          </div>
 
-          <button
-            onClick={goNext}
-            className="absolute right-3 md:right-8 lg:right-16 z-20 w-11 h-11 md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border border-black/15 text-black/30 hover:border-black/40 hover:text-black/60 transition-all duration-300 bg-white/60 backdrop-blur-sm"
-            aria-label="Next model"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            {/* Next button */}
+            <button
+              onClick={goNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border border-black/15 text-black/30 hover:border-black/40 hover:text-black/60 transition-all duration-300 bg-white/60 backdrop-blur-sm"
+              aria-label="Next model"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Description + Explore link */}

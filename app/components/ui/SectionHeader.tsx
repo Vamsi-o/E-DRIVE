@@ -30,7 +30,7 @@ export default function SectionHeader({
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`flex flex-wrap items-end justify-between gap-8 mb-16 lg:mb-20 ${className}`}
+      className={`flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16 lg:mb-20 ${className}`}
     >
       <div className={`flex flex-col ${isCenter ? 'items-center text-center mx-auto' : ''}`}>
         <div className={`flex items-center gap-5 mb-6 ${isCenter ? 'justify-center' : ''}`}>
