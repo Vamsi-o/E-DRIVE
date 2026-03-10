@@ -78,10 +78,11 @@ export default function Footer() {
   const bigTextY = useTransform(scrollYProgress, [0.3, 1], [80, 0]);
 
   return (
-    <footer ref={footerRef} id="footer" className="relative bg-black overflow-hidden">
+    <footer ref={footerRef} id="footer" className="relative bg-black overflow-hidden rounded-t-[2.5rem] lg:rounded-t-[4rem] -mt-8 lg:-mt-12 z-40  ">
       {/* Main content */}
       {/* Main content */}
-      <div className="page-pad pt-20 pb-16">
+      <br />
+      <div className="page-pad pt-20 pb-16 ">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-8">
             {/* Left Nav Grid Area */}

@@ -70,7 +70,7 @@ export default function CompanyPage() {
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
 
         {/* Center/Bottom Content */}
-        <div className="relative z-20 w-full page-pad pb-32 flex-1 flex flex-col justify-end">
+        <div className="relative z-20 w-full page-pad pb-48 lg:pb-64 flex-1 flex flex-col justify-end">
           <div className="max-w-[1400px] mx-auto w-full">
             <motion.p 
               initial={{ opacity: 0, x: -30 }}

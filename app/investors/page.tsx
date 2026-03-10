@@ -78,7 +78,7 @@ export default function InvestorsPage() {
         <div className="relative z-20 w-full page-pad pt-28"></div>
 
         {/* Center/Bottom Content */}
-        <div className="relative z-20 w-full page-pad pb-32 flex-1 flex flex-col justify-end">
+        <div className="relative z-20 w-full page-pad pb-48 lg:pb-64 flex-1 flex flex-col justify-end">
           <div className="max-w-[1400px] mx-auto w-full">
             <motion.p 
               initial={{ opacity: 0, x: -30 }}
