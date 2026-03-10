@@ -90,7 +90,7 @@ export default function ModelsShowcase() {
         </div>
 
         {/* Model Badge */}
-        <div className="text-center mb-2">
+        <div className="text-center mb-2 flex flex-col items-center justify-center min-h-[120px] lg:min-h-[150px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={`badge-${current.id}`}
@@ -116,18 +116,20 @@ export default function ModelsShowcase() {
         </div>
 
         {/* Tagline */}
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={`tagline-${current.id}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.4 }}
-            className="text-center text-[#77633C] text-xl md:text-2xl lg:text-3xl font-medium italic mb-10"
-          >
-            {current.tagline}
-          </motion.p>
-        </AnimatePresence>
+        <div className="flex justify-center min-h-[48px] mb-10">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={`tagline-${current.id}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4 }}
+              className="text-center text-[#77633C] text-xl md:text-2xl lg:text-3xl font-medium italic"
+            >
+              {current.tagline}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
         {/* Car Image with Navigation */}
         <div className="relative flex items-center justify-center mb-10">
@@ -143,27 +145,29 @@ export default function ModelsShowcase() {
               </svg>
             </button>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.id}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="relative"
-              >
-                <img
-                  src={current.image}
-                  alt={current.name}
-                  className="w-full h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.12)]"
-                />
-                {current.comingSoon && (
-                  <div className="absolute top-2 right-2 bg-black text-tiffany text-[0.55rem] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full">
-                    Coming Soon
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
+            <div className="relative w-full aspect-[16/9] sm:aspect-[2/1] md:aspect-[2.5/1]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <img
+                    src={current.image}
+                    alt={current.name}
+                    className="w-full h-full object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.12)]"
+                  />
+                  {current.comingSoon && (
+                    <div className="absolute top-0 right-0 md:top-4 md:right-4 bg-black text-tiffany text-[0.55rem] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full">
+                      Coming Soon
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Next button */}
             <button
@@ -179,29 +183,31 @@ export default function ModelsShowcase() {
         </div>
 
         {/* Description + Explore link */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`info-${current.id}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-center max-w-xl mx-auto page-pad"
-          >
-            <p className="text-black/40 text-sm md:text-base font-light italic leading-relaxed mb-6">
-              {current.description}
-            </p>
-            <Link
-              href={`/models/${current.id}`}
-              className="inline-flex items-center gap-2 text-black text-sm font-semibold tracking-[0.1em] uppercase hover:text-tiffany-muted transition-colors group"
+        <div className="flex justify-center min-h-[120px] page-pad">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`info-${current.id}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="text-center max-w-xl mx-auto"
             >
-              EXPLORE {current.name.toUpperCase()}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:translate-x-1 transition-transform">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </motion.div>
-        </AnimatePresence>
+              <p className="text-black/40 text-sm md:text-base font-light italic leading-relaxed mb-6">
+                {current.description}
+              </p>
+              <Link
+                href={`/models/${current.id}`}
+                className="inline-flex items-center gap-2 text-black text-sm font-semibold tracking-[0.1em] uppercase hover:text-tiffany-muted transition-colors group"
+              >
+                EXPLORE {current.name.toUpperCase()}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:translate-x-1 transition-transform">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Dot indicators */}
         <div className="flex justify-center gap-2.5 mt-10">
