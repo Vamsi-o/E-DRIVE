@@ -42,99 +42,96 @@ export default function ModelsPage() {
   const current = models[active];
 
   return (
-    <div className="bg-black flex flex-col lg:flex-row min-h-[calc(100vh-88px)]">
-        {/* Left Panel — Navigation */}
-        <div className="lg:w-[35%] xl:w-[30%] bg-black flex flex-col justify-center px-8 lg:px-12 xl:px-16 py-16 lg:py-0 lg:sticky lg:top-[88px] lg:h-[calc(100vh-88px)] z-10">
-          <div className="mb-12">
-            <h1 className="text-white/30 text-xs font-bold tracking-[0.4em] uppercase mb-10">
-              Models
-            </h1>
-            <nav className="flex flex-col gap-1">
-              {models.map((model, i) => (
-                <button
-                  key={model.id}
-                  onClick={() => setActive(i)}
-                  className={`text-left py-3 text-2xl lg:text-3xl font-black uppercase tracking-[-0.02em] transition-all duration-500 ${
-                    active === i
-                      ? 'text-tiffany'
-                      : 'text-white/40 hover:text-white'
-                  }`}
-                >
-                  {model.name}
-                  {model.comingSoon && (
-                    <span className="ml-3 text-[0.6rem] text-white/20 font-bold tracking-[0.2em] uppercase align-middle">
-                      Coming Soon
-                    </span>
-                  )}
-                </button>
-              ))}
-            </nav>
+    <div className="relative w-full h-screen overflow-y-auto overflow-x-hidden snap-y snap-mandatory bg-black scroll-smooth">
+      {models.map((model, index) => (
+        <section
+          key={model.id}
+          className="sticky top-0 h-screen w-full snap-start overflow-hidden flex flex-col justify-end pb-24 md:pb-32"
+          style={{ zIndex: index + 1 }}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0 bg-[#0A0A0A]">
+            <Image
+              src={model.image}
+              alt={model.name}
+              fill
+              className="object-cover opacity-90"
+              priority={index === 0}
+            />
           </div>
 
-          <div className="border-t border-white/[0.06] pt-6">
-            {secondaryLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="block py-2 text-white/25 text-sm font-semibold tracking-wide hover:text-white/60 transition-colors"
+          {/* Elegant Gradient overlays for depth */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent" />
+          
+          {/* Content */}
+          <div className="relative z-20 w-full page-pad">
+            <div className="max-w-[1400px] mx-auto flex flex-col items-center text-center">
+              
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-100px" }}
+                transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white/60 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4"
               >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Panel — Model Preview */}
-        <div className="flex-1 relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex-1 relative"
-            >
-              {/* Image */}
-              <div className="relative w-full h-[50vh] lg:h-[calc(70vh-88px)]">
-                <Image
-                  src={current.image}
-                  alt={current.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-              </div>
-
-              {/* Info overlay */}
-              <div className="relative px-8 lg:px-12 -mt-32 z-10">
-                <p className="text-white/50 text-xs font-bold tracking-[0.3em] uppercase mb-3">
-                  {current.tagline}
-                </p>
-                <h2 className="text-white text-5xl lg:text-7xl font-black uppercase tracking-[-0.03em] mb-8">
-                  {current.name}
+                {model.tagline}
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ margin: "-100px" }}
+                transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-4 mb-10"
+              >
+                <h2 className="text-white text-6xl md:text-8xl lg:text-[120px] font-black uppercase tracking-tighter leading-none" style={{ textShadow: '0 10px 40px rgba(0,0,0,0.5)' }}>
+                  {model.name}
                 </h2>
+                {model.comingSoon && (
+                  <span className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 text-[10px] md:text-xs font-bold tracking-widest uppercase rounded">
+                    Coming Soon
+                  </span>
+                )}
+              </motion.div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-4 mb-20">
-                  <Link
-                    href={`/models/${current.id}`}
-                    className="px-8 py-4 bg-tiffany text-black text-xs font-bold tracking-[0.2em] uppercase hover:bg-tiffany/90 transition-colors"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-50px" }}
+                transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto justify-center"
+              >
+                {!model.comingSoon ? (
+                  <>
+                    <Link
+                      href={`/models/${model.id}`}
+                      className="group flex items-center justify-center gap-4 w-full sm:w-auto px-10 py-5 bg-white text-black text-sm tracking-[0.2em] font-black uppercase transition-all duration-500 hover:bg-tiffany"
+                    >
+                      START CONFIGURATION
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-2 transition-transform duration-500">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                    <Link
+                      href={`/models/${model.id}`}
+                      className="w-full sm:w-auto px-10 py-5 border-2 border-white/30 text-white text-sm tracking-[0.2em] font-black uppercase hover:bg-white/10 hover:border-white transition-all duration-500 backdrop-blur-sm"
+                    >
+                      EXPLORE THE MODEL
+                    </Link>
+                  </>
+                ) : (
+                  <button
+                    disabled
+                    className="w-full sm:w-auto px-10 py-5 border-2 border-white/10 text-white/50 text-sm tracking-[0.2em] font-black uppercase cursor-not-allowed backdrop-blur-sm transition-all duration-500"
                   >
-                    Start Configuration
-                  </Link>
-                  <Link
-                    href={`/models/${current.id}`}
-                    className="px-8 py-4 border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase hover:border-white/60 transition-colors"
-                  >
-                    Explore the Model
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+                    NOT YET AVAILABLE
+                  </button>
+                )}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

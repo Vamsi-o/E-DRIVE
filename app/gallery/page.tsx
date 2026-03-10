@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const images = [
   { src: '/885286b6-b226-40e0-a0ec-6e0b5d06bba7.JPG', alt: 'Model R' },
@@ -26,39 +27,73 @@ export default function GalleryPage() {
 
   return (
     <>
-      <div className="bg-black text-white min-h-screen">
-        {/* Hero */}
-        <section className="pt-32 pb-12 px-[var(--page-padding)]">
-          <div className="max-w-[1400px] mx-auto">
-            <p className="text-tiffany text-xs font-bold tracking-[0.4em] uppercase mb-3">
-              Gallery
-            </p>
-            <h1 className="text-5xl lg:text-7xl font-black uppercase tracking-[-0.03em]">
-              Visual Gallery
-            </h1>
+      <div className="bg-white min-h-screen font-sans">
+        {/* Hero Section */}
+        <section className="relative h-screen min-h-[700px] w-full flex flex-col justify-end">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0 bg-[#0A0A0A]">
+            <Image
+              src={images[11].src}
+              alt="eDrive Gallery Hero"
+              fill
+              className="object-cover opacity-60"
+              priority
+            />
+          </div>
+          
+          {/* Dark Overlays */}
+          <div className="absolute inset-0 z-10 bg-black/30" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+
+          {/* Center/Bottom Content */}
+          <div className="relative z-20 w-full page-pad pb-32 flex-1 flex flex-col justify-end">
+            <div className="max-w-[1400px] mx-auto w-full">
+              <motion.p 
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white font-bold text-sm tracking-[0.2em] uppercase mb-4"
+              >
+                AESTHETICS
+              </motion.p>
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white text-[3.5rem] md:text-7xl lg:text-[100px] font-title font-black uppercase tracking-tighter leading-[0.9] flex flex-col mb-16"
+              >
+                <span>VISUAL</span>
+                <span>GALLERY</span>
+              </motion.h1>
+            </div>
           </div>
         </section>
 
         {/* Grid */}
-        <section className="px-[var(--page-padding)] pb-28">
-          <div className="max-w-[1400px] mx-auto columns-1 md:columns-2 lg:columns-3 gap-4">
+        <section className="px-[var(--page-padding)] py-24 bg-white">
+          <div className="max-w-[1400px] mx-auto columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
             {images.map((img, i) => (
-              <button
+              <motion.button
                 key={img.src}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: (i % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setLightbox(i)}
-                className="block w-full mb-4 break-inside-avoid group cursor-pointer"
+                className="block w-full break-inside-avoid group cursor-pointer relative focus:outline-none focus:ring-2 focus:ring-black"
               >
-                <div className="relative overflow-hidden rounded-lg">
+                <div className="relative overflow-hidden bg-[#f5f5f5]">
                   <Image
                     src={img.src}
                     alt={img.alt}
                     width={800}
                     height={600}
-                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                 </div>
-              </button>
+              </motion.button>
             ))}
           </div>
         </section>
@@ -67,7 +102,7 @@ export default function GalleryPage() {
       {/* Lightbox */}
       {lightbox !== null && (
         <div
-          className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center"
+          className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center p-4 md:p-12"
           onClick={() => setLightbox(null)}
         >
           <button
@@ -78,37 +113,40 @@ export default function GalleryPage() {
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
+          
           {lightbox > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); setLightbox(lightbox - 1); }}
-              className="absolute left-4 text-white/60 hover:text-white transition-colors"
+              className="absolute left-2 md:left-8 text-white/40 hover:text-white transition-colors p-4 z-10 bg-black/50 hover:bg-black/80 rounded-full"
             >
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
           )}
+          
           {lightbox < images.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); setLightbox(lightbox + 1); }}
-              className="absolute right-4 text-white/60 hover:text-white transition-colors"
+              className="absolute right-2 md:right-8 text-white/40 hover:text-white transition-colors p-4 z-10 bg-black/50 hover:bg-black/80 rounded-full"
             >
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </button>
           )}
+          
           <Image
             src={images[lightbox].src}
             alt={images[lightbox].alt}
-            width={1400}
-            height={900}
-            className="max-w-[90vw] max-h-[85vh] object-contain"
+            width={1600}
+            height={1000}
+            className="max-w-full max-h-full object-contain drop-shadow-2xl"
             onClick={(e) => e.stopPropagation()}
+            priority
           />
         </div>
       )}
-
     </>
   );
 }
