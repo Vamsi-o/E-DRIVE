@@ -1,15 +1,41 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Nunito_Sans,
+  Ubuntu,
+  Inter,
+  Roboto,
+} from "next/font/google";
 import "./globals.css";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import SocialSidebar from "./components/layout/SocialSidebar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito",
+  subsets: ["latin", "cyrillic"],
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
+  subsets: ["latin", "cyrillic"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -41,8 +67,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body
+        className={`${nunitoSans.variable} ${ubuntu.variable} ${inter.variable} ${roboto.variable}`}
+      >
+        <Header />
+        <SocialSidebar />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
